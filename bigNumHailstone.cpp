@@ -5,7 +5,7 @@ By: Ellis, M. J.
 Creation: September 9, 2015
 Last updated:
     By Ellis, M.J.
-    September 9, 2015
+    September 12, 2015
 
 */
 #include <cstdlib>
@@ -14,7 +14,22 @@ Last updated:
 #include <ctime>
 using namespace std;
 
-const int SIZE = 100;
+void readInBigNum(vector<int> &bigNum){
+    int input;
+    cout << "Enter digits of large number: ";
+    while(cin >> input) bigNum.push_back(input); //any noninteger entered will end the loop. For now we're presuming one digit per integer entered, though that can be fixed with a separate function later.
+
+}
+
+void writeBigNum(vector<int> &bigNum){
+        bool nonzeroBeg = false;
+        for(int i = 0; i < bigNum.size(); i++){
+            if(bigNum[i]) nonzeroBeg = true;
+            if(nonzeroBeg){
+                cout << bigNum[i];
+            }
+        }
+}
 
 void bigEvenNumDivideBy2(vector<int> &bigEvenNum){
     for(int j = bigEvenNum.size() - 1; j >= 0; j--){
@@ -45,14 +60,14 @@ void bigNumAddOne(vector<int> &bigNum){
 }
 
 int main(){
-    vector<int> bigNum = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 7, 9, 4, 0, 0, 3, 9, 3, 6, 8, 9, 7, 1, 7, 4, 5, 9, 1, 2, 4, 2, 2, 3};
+    vector<int> bigNum = {0};
     bool isItOne = false;
 /*    srand(time(NULL));
     for(int i = 0; i < SIZE; i++) bigNum[i] = rand() % 10;
- */   cout << "Your starting number: ";
-    for(int i = 0; i < bigNum.size(); i++){
-        cout << bigNum[i];
-    }
+ */
+    readInBigNum(bigNum);
+    cout << "Your starting number: ";
+    writeBigNum(bigNum);
     while(!isItOne){
     isItOne = true;
     cout << ' ';
@@ -63,13 +78,7 @@ int main(){
     else {
         bigEvenNumDivideBy2(bigNum);
     }
-        bool nonzeroBeg = false;
-        for(int i = 0; i < bigNum.size(); i++){
-            if(bigNum[i]) nonzeroBeg = true;
-            if(nonzeroBeg){
-                cout << bigNum[i];
-            }
-    }
+    writeBigNum(bigNum);
     for(int i = 0; i < bigNum.size() - 1; i++){
         if(bigNum[i]) isItOne = false;
     }
